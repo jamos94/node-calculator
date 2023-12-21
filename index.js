@@ -29,7 +29,28 @@ const operation = getOperation(arrOp);
 const num1 = getNumber('first');
 const num2 = getNumber('second');
 
-console.log(num1, operation, num2);
+function evaluate(num1, num2, operator){
+  switch (operator){
+    case '+': 
+      result = num1 + num2;
+      break;
+    case '-': 
+      result = num1 - num2;
+      break;
+    case '/': 
+      result = num1 / num2;
+      break;
+    case '*': 
+      result = num1 * num2;
+      break;
+    default:
+      console.log('Invalid operator');
+      return
+  }
+  return console.log(`The result is: ${result} `)
+}
+
+evaluate(num1, num2, operation);
 
 
 
