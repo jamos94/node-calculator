@@ -3,7 +3,14 @@
 
 const rs = require('readline-sync');
 
-const arrOp = ['/','*','-','+'];
+const opObj = {
+  "+": (a,b) => a + b,
+  "-": (a,b) => a - b,
+  "/": (a,b) => a / b,
+  "*": (a,b) => a * b,
+  "%": (a,b) => a % b,
+}
+
 
 const getOperation = (limit) => {
   while(true) {
@@ -25,33 +32,21 @@ const getNumber = (str) => {
   }
 }
 
-const operation = getOperation(arrOp);
-const num1 = getNumber('first');
-const num2 = getNumber('second');
-
-function evaluate(num1, num2, operator){
-  switch (operator){
-    case '+': 
-      result = num1 + num2;
-      break;
-    case '-': 
-      result = num1 - num2;
-      break;
-    case '/': 
-      result = num1 / num2;
-      break;
-    case '*': 
-      result = num1 * num2;
-      break;
-    default:
-      console.log('Invalid operator');
-      return
-  }
-  return console.log(`The result is: ${result} `)
+function evaluate(opObj, num1, num2, operator){
+  return opObj[operator](num1,num2);
 }
 
-evaluate(num1, num2, operation);
+const calculator = (opObj) => {
+  const arrOp = Object.keys(opObj);
 
+  const operation = getOperation(arrOp);
+  const num1 = getNumber('first');
+  const num2 = getNumber('second');
+
+  console.log(`The result is: ${evaluate(opObj, num1, num2, operation)}`);
+}
+
+calculator(opObj);
 
 
 // function isOperator(value) {
